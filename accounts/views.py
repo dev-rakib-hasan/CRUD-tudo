@@ -16,7 +16,9 @@ def add(request):
 #get single product
 @api_view(['GET'])
 def get(request, pk):
-    product
+    product = Product.objects.get(pk=pk)
+    serializer = ProductSerializer(product)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 #get all product
 @api_view(['GET'])
