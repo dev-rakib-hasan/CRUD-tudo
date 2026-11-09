@@ -7,7 +7,7 @@ from .models import Product
 # Create your views here.
 @api_view(['POST'])
 def add(request):
-    serializer = ProductSerializer(data=request.data)
+    serializer = ProductSerializer(data=request.data, many=True)
     if serializer.is_valid():
         serializer.save()
         return Response({'message':'product added successfully.', 'data':serializer.data}, status=status.HTTP_201_CREATED)
