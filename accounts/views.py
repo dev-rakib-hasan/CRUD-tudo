@@ -2,6 +2,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import ProductSerializer
+
 from .models import Product
 
 # Create your views here.
@@ -18,7 +19,7 @@ def add(request):
 @api_view(['GET'])
 def get_all(request):
     products = Product.objects.all()
-    serializer = ProductSerializer(products)
+    serializer = ProductSerializer(products, many=True)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
